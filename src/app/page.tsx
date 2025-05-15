@@ -1,9 +1,10 @@
 'use client';
 import { motion } from "framer-motion";
-import Beneficios from "@/components/beneficios";
-import Footer from "@/components/footer";
-import Formulario from "@/components/formulario";
-import QuienesSomos from "@/components/quienesSomos";
+import QuienesSomos from "./components/quienesSomos";
+import Beneficios from "./components/beneficios";
+import Formulario from "./components/formulario";
+import Footer from "./components/footer";
+
 
 export default function Home() {
   return (

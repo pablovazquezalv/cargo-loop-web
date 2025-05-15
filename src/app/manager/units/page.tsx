@@ -1,9 +1,10 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Button from '@/components/ui/button';
-import Card from '@/components/ui/card';
-import CardContent from '@/components/ui/card-content';
+import Button from '@/app/components/ui/button';
+import Card from '@/app/components/ui/card';
+import CardContent from '@/app/components/ui/card-content';
+
 
 export default function UnitsPage() {
     const [unidades] = useState([

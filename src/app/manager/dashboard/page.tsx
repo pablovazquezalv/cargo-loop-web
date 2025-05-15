@@ -1,9 +1,9 @@
 'use client'
 
-import Button from "@/components/ui/button";
-import Card from "@/components/ui/card";
-import CardContent from "@/components/ui/card-content";
 
+import Button from '@/app/components/ui/button';
+import Card from '@/app/components/ui/card';
+import CardContent from '@/app/components/ui/card-content';
 import { useRouter } from 'next/navigation'
 
 export default function Dashboard() {

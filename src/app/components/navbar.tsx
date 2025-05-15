@@ -6,8 +6,8 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between px-6 py-4 shadow-sm">
       <div className="text-2xl font-bold">
-        <Link href="/">Logo
-          <img src="/logo.png" alt="Logo" className="h-8 inline-block" />
+        <Link href="/">Carga loop
+          <img src="/Carga-loop-icon.png" alt="Logo" className="h-8 inline-block" />
         </Link>
       </div>
       <ul className="flex space-x-6">
