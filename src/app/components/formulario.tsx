@@ -1,6 +1,6 @@
 export default function Formulario() {
     return (
-        <section className="min-h-screen px-6 py-12 md:px-24 md:py-20 bg-white">
+        <section className="min-h-screen px-6 py-6 md:px-24 md:py-6 bg-white">
             <h3 className="text-2xl md:text-4xl font-bold text-blue-800 mb-6">Planea tu siguiente envío!</h3>
             <h2 className="text-3xl font-bold text-blue-800 mb-4">Formulario</h2>
             <form className="space-y-6">

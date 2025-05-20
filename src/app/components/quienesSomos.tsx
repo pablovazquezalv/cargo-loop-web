@@ -9,19 +9,17 @@ export default function QuienesSomos() {
         {/* Text Block */}
         <div className="space-y-10">
           <div className="p-6">
-            <h2 className="text-3xl font-bold text-blue-800 mb-4">¿Quienes somos?</h2>
+            <h2 className="text-3xl font-bold text-blue-800 mb-4">Visión</h2>
             <p className="text-gray-800 mb-4">
-              Somos un grupo de profesionales expertos en logística con más de 20 años de experiencia. Nuestra plataforma te conecta con los generadores de carga, todo esto, dentro de una comunidad segura y cerrada.
+            Impulsar una red justa y eficiente que profesionalice a los transportistas y facilite a las empresas mover su carga con seguridad, puntualidad y transparencia
             </p>
-            <p className="text-gray-800">
-              La inteligencia de la plataforma permite generar conexiones automáticas y en tiempo real entre Generadores de Carga y Transportistas con unidades y espacio disponible, geográficamente cercanos.
-            </p>
+            
           </div>
 
           <div className="p-6">
             <h2 className="text-3xl font-bold text-blue-800 mb-4">Misión</h2>
             <p className="text-gray-800">
-              Nuestra misión es desarrollar continuamente soluciones tecnológicas de vanguardia para la industria del transporte incluyendo la Inteligencia Artificial, Machine Learning para generar Inteligencia de Negocio.
+            Transformar la logística de carga en México, impulsando la eficiencia, la transparencia y la confianza entre quienes necesitan mover mercancías y quienes pueden hacerlo.
             </p>
           </div>
         </div>
