@@ -10,6 +10,8 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const [recoveryEmail, setRecoveryEmail] = useState('');
+    const [recoveryMessage, setRecoveryMessage] = useState('');
 
     const handleLogin = async () => {
         try {
@@ -22,7 +24,6 @@ export default function Login() {
             });
 
             const data = await response.json();
-            console.log('Login response:', data);
 
             if (response.ok) {
                 if (data.token) {
@@ -35,6 +36,30 @@ export default function Login() {
         } catch (error) {
             console.error('Fetch error:', error);
             setError('Error al conectar con el servidor');
+        }
+    };
+
+    const handlePasswordRecovery = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/manager/forgetPassword', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: recoveryEmail }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setRecoveryMessage('Se ha enviado un correo de recuperación.');
+            } else {
+                console.error('Recovery error:', data);
+                setRecoveryMessage(data.message || 'No se pudo enviar el correo.');
+            }
+        } catch (error) {
+            console.error('Recovery error:', error);
+            setRecoveryMessage('Ocurrió un error al enviar el correo.');
         }
     };
 
@@ -71,7 +96,7 @@ export default function Login() {
                 </label>
 
                 <button
-                    type='button'
+                    type="button"
                     onClick={handleLogin}
                     className="w-full py-3 bg-blue-800 text-white rounded hover:bg-blue-900 transition-all"
                 >
@@ -79,24 +104,31 @@ export default function Login() {
                 </button>
 
                 <button
-                    onClick={() => setShowModal(true)}
+                    onClick={() => {
+                        setShowModal(true);
+                        setRecoveryEmail('');
+                        setRecoveryMessage('');
+                    }}
                     className="block w-full text-center text-blue-700 mt-4 hover:underline"
                 >
                     ¿Olvidaste tu contraseña?
                 </button>
             </div>
 
-            {/* Modal para recuperación */}
+            {/* Modal de recuperación */}
             <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
                 <h2 className="text-lg font-semibold mb-4">Recuperar contraseña</h2>
                 <p className="mb-4 text-sm text-gray-700">
-                    Por favor contacta a soporte o ingresa tu correo para recibir instrucciones.
+                    Ingresa tu correo y te enviaremos instrucciones para recuperar tu contraseña.
                 </p>
                 <input
                     type="email"
+                    value={recoveryEmail}
+                    onChange={(e) => setRecoveryEmail(e.target.value)}
                     placeholder="Tu correo"
                     className="w-full mb-4 p-2 border rounded"
                 />
+                {recoveryMessage && <p className="text-sm text-green-600 mb-2">{recoveryMessage}</p>}
                 <div className="flex justify-end gap-2">
                     <button
                         onClick={() => setShowModal(false)}
@@ -105,7 +137,7 @@ export default function Login() {
                         Cancelar
                     </button>
                     <button
-                        onClick={() => alert('Simulando envío de correo')}
+                        onClick={handlePasswordRecovery}
                         className="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-900"
                     >
                         Enviar
