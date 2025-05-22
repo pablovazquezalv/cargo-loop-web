@@ -4,18 +4,18 @@ import { useRouter } from 'next/navigation';
 
 export default function Register() {
     const router = useRouter();
-    const [nombre, setNombre] = useState('');
+    const [name, setname] = useState('');
     const [apellido, setApellido] = useState('');
     const [email, setEmail] = useState('');
-    const [telefono, setTelefono] = useState('');
+    const [phone, setphone] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [password_confirmation, setpassword_confirmation] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
     const handleRegister = async () => {
         // Validación básica
-        if (password !== confirmPassword) {
+        if (password !== password_confirmation) {
             setError('Las contraseñas no coinciden');
             return;
         }
@@ -26,7 +26,7 @@ export default function Register() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ nombre, apellido, email, telefono, password }),
+                body: JSON.stringify({ name, apellido, email, phone, password, password_confirmation }),
             });
 
             const data = await response.json();
@@ -36,6 +36,7 @@ export default function Register() {
                 setError('');
                 setTimeout(() => router.push('/information'), 1500);
             } else {
+                console.log('Error:', data);
                 setError(data.message || 'Error al crear la cuenta');
                 setSuccess('');
             }
@@ -61,8 +62,8 @@ export default function Register() {
                     <span className="text-gray-700 font-semibold">Nombre</span>
                     <input
                         type="text"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
+                        value={name}
+                        onChange={(e) => setname(e.target.value)}
                         placeholder="Proporciona tu nombre"
                         className="w-full mt-2 p-3 border rounded focus:outline-none focus:ring focus:ring-blue-200"
                     />
@@ -94,8 +95,8 @@ export default function Register() {
                     <span className="text-gray-700 font-semibold">Teléfono</span>
                     <input
                         type="text"
-                        value={telefono}
-                        onChange={(e) => setTelefono(e.target.value)}
+                        value={phone}
+                        onChange={(e) => setphone(e.target.value)}
                         placeholder="Proporciona tu teléfono"
                         className="w-full mt-2 p-3 border rounded focus:outline-none focus:ring focus:ring-blue-200"
                     />
@@ -116,8 +117,8 @@ export default function Register() {
                     <span className="text-gray-700 font-semibold">Confirmar Contraseña</span>
                     <input
                         type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        value={password_confirmation}
+                        onChange={(e) => setpassword_confirmation(e.target.value)}
                         placeholder="Confirma tu contraseña"
                         className="w-full mt-2 p-3 border rounded focus:outline-none focus:ring focus:ring-blue-200"
                     />
