@@ -30,10 +30,13 @@ export default function Register() {
             });
 
             const data = await response.json();
-
+            const token = data.token; // Asegúrate de que el token esté en la respuesta
+            
             if (response.ok) {
                 setSuccess('Cuenta creada exitosamente');
                 setError('');
+                //MANDAR TOKEN A LOCAL STORAGE
+                localStorage.setItem('token',token);
                 setTimeout(() => router.push('/information'), 1500);
             } else {
                 console.log('Error:', data);

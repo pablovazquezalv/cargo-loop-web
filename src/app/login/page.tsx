@@ -1,5 +1,6 @@
 'use client';
 
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Modal from '../components/modal';
@@ -23,12 +24,17 @@ export default function Login() {
                 body: JSON.stringify({ email, password }),
             });
 
-            const data = await response.json();
+            let data;
+             data = await response.json();
 
-            if (response.ok) {
-                if (data.token) {
-                    localStorage.setItem('token', data.token);
-                }
+
+             console.log('Response status:', response.status);
+
+            if (response.status === 200) {
+                console.log(data.data.token);
+                localStorage.setItem('token', data.data.token);
+                localStorage.setItem('user', JSON.stringify(data.data.user));
+                console.log('Login exitoso:', data);
                 router.push('/manager/dashboard');
             } else {
                 setError(data.message || 'Credenciales incorrectas');
